@@ -162,8 +162,8 @@ async function storePassages(passageDict: any) {
 
 // Main function to handle incoming requests
 async function handleRequest(request: Request) {
-  const requestData = await request.json();
-  const translation = requestData['content'];
+  const jsonPayload = await request.json();
+  const translation = JSON.parse(jsonPayload.content);
   console.log("📥 Received Translation", translation['work'][0]['workId']);
   const workDict = await makeWork(translation);
   try {
