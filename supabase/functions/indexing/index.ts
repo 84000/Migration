@@ -108,7 +108,7 @@ async function storeWork(workDict: any) {
       console.log("✅ Deleted Work and its Titles and Passages");
     }
 
-    console.log("Inserting Work",workDict);
+    console.log("Inserting Work",workDict.xmlId);
 
     // Insert the work and return the workId
     const { data: InsertedworkData, error: insertError } = await supabase
@@ -120,7 +120,7 @@ async function storeWork(workDict: any) {
         console.error("Error Inserting Work", insertError);
       throw insertError;
     }
-  console.log("✅ Added Work", InsertedworkData);
+  console.log("✅ Added Work", InsertedworkData[0].uuid);
     return InsertedworkData[0].uuid;
   } catch (error) {
     console.error("Error Occurred in work", error);
@@ -132,7 +132,7 @@ async function storeTitles(titlesDicts: any) {
   try {
     const { data: titleData, error } = await supabase
         .from('titles')
-        .upsert(titlesDicts);
+        .upsert(titlesDicts).select();
 
     if (error) throw error;
 
@@ -148,7 +148,7 @@ async function storePassages(passageDict: any) {
   try {
     const { data: passageData, error } = await supabase
         .from('passages')
-        .upsert(passageDict);
+        .upsert(passageDict).select();
 
     if (error) throw error;
 
@@ -188,14 +188,16 @@ async function handleRequest(request: Request) {
         console.log("❌ No Passages to Store");
       }
     }
+    console.log("✅ Addition Complete", workDict.xmlId)
   } catch (error) {
     console.error('‼️ Error:', error.message);
     await supabase.from('Error').upsert({
       error: error.message,
       xmlId: workDict.xmlId,
-    }).execute();
+    }).select();
   }
-  return new Response("Processed", { status: 200 });
+
+  return new Response("Processed", { status: 200   });
 }
 
 // Start the server
