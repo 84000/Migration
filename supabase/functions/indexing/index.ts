@@ -6,8 +6,8 @@ import {createClient} from 'https://esm.sh/@supabase/supabase-js@2'
 // @ts-ignore
 
 // Supabase credentials
-const url = "https://shkneigwyxmixieeqpwa.supabase.co";
-const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNoa25laWd3eXhtaXhpZWVxcHdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc2OTI3NzAsImV4cCI6MjAzMzI2ODc3MH0.kVBCaHfxkNOmvI0MrGMZsa3oA10Ls4Xa3LlxDP4NZIA";
+const url = "https://ivwvvjgudwqwjbclvfjy.supabase.co";
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2d3Z2amd1ZHdxd2piY2x2Zmp5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwNzUwMTY3NCwiZXhwIjoyMDIzMDc3Njc0fQ.fB00yuZqZkRt-vdduxZ5BVuUgNYBxMk4mdwu-k3ERgE";
 const supabase = createClient(url, key);
 
 
